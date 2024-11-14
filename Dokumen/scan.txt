@@ -1,0 +1,58 @@
+nano /home/alex/.config/subfinder/provider-config.yaml ctrl+o-enter-ctrl+x
+
+go:	screen -ls
+	screen -r -d 1234.1
+
+time (<command>)
+
+source ~/.bashrc
+
+subfinder -dL wildcard.txt -recursive -o subdomain.txt -s securitytrails,crtsh,alienvault,anubis,commoncrawl,digitorus,dnsdumpster,hackertarget,rapiddns,sitedossier,waybackarchive && shuf subdomain.txt -o subdomain.txt && cat subdomain.txt | httpx-toolkit -mc 200 -o filter.txt
+
+waymore -i filter.txt -mode U -oU urls.txt -p 10 -wrlr 1
+
+shuf urls.txt -o urls.txt
+
+cat urls.txt | gf or | sed 's/=.*/=/' | grep -E 'redir|url|dest|r=|go=|goto|go_to|continue|next|location|return|forward|target|uri|image_url|link|checkout' | uro > or.txt
+
+cat urls.txt | gf sqli | uro > sqli.txt
+
+cat urls.txt | gf xss | uro > xss.txt
+
+sudo python3 autoor.py -l or.txt -o autoor.txt -t 5
+
+sudo python3 autosqlmap.py -l sqli.txt -o autosqlmap.txt -t 40
+
+sudo python3 autoxss.py -l xss.txt -o autoxss.txt -t 10
+
+cat autoor.txt | grep -E 'Success'
+
+cat autosqlmap.txt | grep -E 'Payload:'
+
+
+
+head -n 100 urls.txt >> result.txt && sed -i '1,100d' urls.txt
+
+make:	screen -ls
+	screen -S 1
+
+
+
+ssl:"Starbucks Coffee Company" product:"Microsoft IIS httpd"
+
+awk '!seen[$0]++' ip.txt | tee ip.txt > /dev/null
+
+python3 autoshortscan.py -l ip.txt -o short.txt -t 10 && sed -i 's/.*/\L&/' short.txt
+
+python3 autoscraper.py -l shortname.txt
+
+ffuf -w iis.txt -u https://site.com/FUZZ -c -v -mc 200,302,301,403,401
+
+/(?i)(shortname[a-z0-9-_]+\.zip)/
+/(?i)(shortname[a-z0-9-_]+)/
+
+ffuf -w fuzz.txt -u https://IP:5010/FUZZ -c -v -recursion
+
+admin:admin		root:root
+test:test		user:pwd
+username:password	subdomain.att.com:subdomain.att.com
